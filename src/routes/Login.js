@@ -1,5 +1,4 @@
 import {
-  Box,
   Flex,
   Image,
   Text,
@@ -90,6 +89,7 @@ function Login() {
         <Flex as="form">
           <FormControl>
             <FormLabel
+              color="#424242"
               fontWeight="600"
               fontSize="14px"
               lineHeight="16px"
@@ -107,6 +107,7 @@ function Login() {
               marginBottom="32px"
             ></Input>
             <FormLabel
+              color="#424242"
               fontWeight="600"
               fontSize="14px"
               lineHeight="16px"
