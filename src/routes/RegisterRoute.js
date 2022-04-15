@@ -17,11 +17,35 @@ import logo from "../assets/login_page/logo.png";
 import React from "react";
 import dogBackground from "../assets/login_page/dogBackground.png";
 import symbol from "../assets/login_page/symbol.png";
-function Register() {
-  const [show, setShow] = React.useState(false);
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useNavigate, useLocation } from "react-router-dom";
 
+const schema = yup.object({
+  name: yup.string().required("Nome é obrigatório!"),
+  email: yup.string().required("Email é obrigatório!"),
+  username: yup
+    .string()
+    .min(5, "Mínimo de 5 caracteres")
+    .required("Username é obrigatório!"),
+  password: yup
+    .string()
+    .min(5, "Mínimo de 5 caracteres")
+    .required("Senha é obrigatória!"),
+});
+function Register() {
+  const { register, handleSubmit } = useForm({ resolver: yupResolver(schema) });
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
 
+  async function onSubmit(data) {
+    console.log(data);
+    const from = location.state?.from?.pathname || "/home";
+    navigate(from, { replace: true });
+  }
   return (
     <Flex flexDirection="column">
       <Flex>
@@ -56,8 +80,8 @@ function Register() {
         >
           Cadastro
         </Text>
-        <Flex as="form">
-          <FormControl>
+        <Flex as="form" onSubmit={handleSubmit(onSubmit)}>
+          <FormControl isRequired>
             <FormLabel
               fontWeight="600"
               fontSize="14px"
@@ -75,6 +99,7 @@ function Register() {
               borderRadius="4px"
               borderColor="#00ACC1"
               marginBottom="16px"
+              {...register("name")}
             ></Input>
             <FormLabel
               fontWeight="600"
@@ -93,6 +118,7 @@ function Register() {
               borderRadius="4px"
               borderColor="#757575"
               marginBottom="16px"
+              {...register("email")}
             ></Input>
             <FormLabel
               fontWeight="600"
@@ -111,6 +137,7 @@ function Register() {
               borderRadius="4px"
               borderColor="#757575"
               marginBottom="16px"
+              {...register("username")}
             ></Input>
             <FormLabel
               fontWeight="600"
@@ -131,6 +158,7 @@ function Register() {
                 border="solid 2px"
                 borderRadius="4px"
                 borderColor="#757575"
+                {...register("password")}
               />
               <InputRightElement>
                 <IconButton
@@ -163,6 +191,7 @@ function Register() {
               variant="solid"
               color="white"
               marginBottom="24px"
+              type="submit"
             >
               Entrar
             </Button>

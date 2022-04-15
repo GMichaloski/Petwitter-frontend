@@ -3,7 +3,7 @@ import { AuthProvider, RequireAuth } from "./context/auth-context";
 import Login from "./routes/Login";
 import Layout from "./components/Layout";
 import PublicPage from "./routes/PublicPage";
-import ProtectedPage from "./routes/ProtectedPage";
+import Home from "./routes/Home";
 import RegisterRoute from "./routes/RegisterRoute";
 
 function App() {
@@ -15,10 +15,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<RegisterRoute />} />
           <Route
-            path="/protected"
+            path="/home"
             element={
               <RequireAuth>
-                <ProtectedPage />
+                <Home />
               </RequireAuth>
             }
           />

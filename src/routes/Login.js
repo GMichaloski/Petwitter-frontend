@@ -19,21 +19,20 @@ import dogBackground from "../assets/login_page/dogBackground.png";
 import symbol from "../assets/login_page/symbol.png";
 import logo from "../assets/login_page/logo.png";
 import { useAuth } from "../context/auth-context";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 function Login() {
+  const { register, handleSubmit } = useForm();
+  // const onSubmit = (data) => console.log(data);
   const navigate = useNavigate();
   const location = useLocation();
   const { signin } = useAuth();
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/home";
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-    const email = formData.get("email");
-    const password = formData.get("password");
-
+  async function onSubmit(data) {
+    const { email, password } = data;
     await signin({ email, password });
     navigate(from, { replace: true });
   }
@@ -86,7 +85,7 @@ function Login() {
         >
           Login
         </Text>
-        <Flex as="form">
+        <Flex as="form" onSubmit={handleSubmit(onSubmit)}>
           <FormControl>
             <FormLabel
               color="#424242"
@@ -105,6 +104,7 @@ function Login() {
               borderRadius="4px"
               borderColor="#00ACC1"
               marginBottom="32px"
+              {...register("email")}
             ></Input>
             <FormLabel
               color="#424242"
@@ -125,6 +125,7 @@ function Login() {
                 border="solid 2px"
                 borderRadius="4px"
                 borderColor="#757575"
+                {...register("password")}
               />
               <InputRightElement>
                 <IconButton
@@ -148,6 +149,7 @@ function Login() {
               variant="solid"
               color="white"
               marginBottom="24px"
+              type="submit"
             >
               Entrar
             </Button>
