@@ -21,7 +21,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import { useAuth } from "../context/auth-context";
 const schema = yup.object({
   name: yup.string().required("Nome é obrigatório!"),
   email: yup.string().required("Email é obrigatório!"),
@@ -38,13 +38,15 @@ function Register() {
   const { register, handleSubmit } = useForm({ resolver: yupResolver(schema) });
   const navigate = useNavigate();
   const location = useLocation();
+  const { registerAccount } = useAuth();
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
 
   async function onSubmit(data) {
     console.log(data);
-    const from = location.state?.from?.pathname || "/home";
-    navigate(from, { replace: true });
+    await registerAccount(data);
+    // const from = location.state?.from?.pathname || "/login";
+    // navigate(from, { replace: true });
   }
   return (
     <Flex flexDirection="column">

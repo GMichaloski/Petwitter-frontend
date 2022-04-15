@@ -1,7 +1,7 @@
 import { createContext, useState, useContext } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 
-import { setInStorage, login } from "../services/auth";
+import { setInStorage, login, signup } from "../services/auth";
 
 const AuthContext = createContext(null);
 
@@ -25,13 +25,27 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const registerAccount = async (data) => {
+    try {
+      const response = await signup(data);
+      const user = {
+        accessToken: response.data.accessToken,
+        ...response.data.user,
+      };
+      setInStorage("user", user);
+      setUser(user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const signout = () => {
     localStorage.clear();
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, signin, signout }}>
+    <AuthContext.Provider value={{ user, signin, signout, registerAccount }}>
       {children}
     </AuthContext.Provider>
   );
