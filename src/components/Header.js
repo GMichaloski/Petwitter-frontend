@@ -21,10 +21,13 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
+  Text,
+  Link,
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import Hamburguer from "../icons/Hamburguer";
 import Logo from "../icons/Logo";
+import Exit from "../icons/Exit";
 
 function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -32,7 +35,6 @@ function Header() {
   return (
     <Flex
       height="48px"
-      width="100%"
       paddingLeft="16px"
       boxShadow="0px 2px 4px rgba(33, 33, 33, 0.2)"
     >
@@ -51,15 +53,19 @@ function Header() {
         placement="left"
         onClose={onClose}
         finalFocusRef={btnRef}
-        size="xs"
       >
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerCloseButton />
           <DrawerHeader>Create your account</DrawerHeader>
 
           <DrawerBody>
-            <Input placeholder="Type here..." />
+            <Flex flexDir="column">
+              <Link>Home</Link>
+              <Link>Meu perfil</Link>
+              <Button leftIcon={<Icon as={Exit} />} width="61px" height="24px">
+                Sair
+              </Button>
+            </Flex>
           </DrawerBody>
 
           <DrawerFooter>

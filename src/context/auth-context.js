@@ -34,6 +34,7 @@ export function AuthProvider({ children }) {
       };
       setInStorage("user", user);
       setUser(user);
+      alert("Usuário cadastrado com sucesso!");
     } catch (error) {
       console.log(error);
     }
