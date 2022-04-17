@@ -1,13 +1,7 @@
-import Header from "../components/Header";
-import PostButton from "../components/PostButton";
-import { Flex } from "@chakra-ui/react";
+import HomeDesktop from "../components/Home/HomeDesktop";
+
 function Home() {
-  return (
-    <Flex flexDir="column">
-      <Header />
-      <PostButton />
-    </Flex>
-  );
+  return <HomeDesktop />;
 }
 
 export default Home;

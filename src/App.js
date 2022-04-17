@@ -6,13 +6,13 @@ import PublicPage from "./routes/PublicPage";
 import Home from "./routes/Home";
 import RegisterRoute from "./routes/RegisterRoute";
 import Petweet from "./routes/Petweet";
+import Perfil from "./routes/Perfil";
 
 function App() {
   return (
     <AuthProvider>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<PublicPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<RegisterRoute />} />
           <Route
@@ -20,6 +20,14 @@ function App() {
             element={
               <RequireAuth>
                 <Home />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/perfil"
+            element={
+              <RequireAuth>
+                <Perfil />
               </RequireAuth>
             }
           />
