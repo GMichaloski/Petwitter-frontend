@@ -24,6 +24,7 @@ import {
   Text,
   Link,
 } from "@chakra-ui/react";
+import { useAuth } from "../context/auth-context";
 import { useRef } from "react";
 import Hamburguer from "../icons/Hamburguer";
 import Logo from "../icons/Logo";
@@ -32,6 +33,10 @@ import Exit from "../icons/Exit";
 function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
+  const { signout } = useAuth();
+  const logout = () => {
+    signout();
+  };
   return (
     <Flex
       height="48px"
@@ -56,13 +61,18 @@ function Header() {
       >
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader>Create your account</DrawerHeader>
-
           <DrawerBody>
             <Flex flexDir="column">
               <Link>Home</Link>
               <Link>Meu perfil</Link>
-              <Button leftIcon={<Icon as={Exit} />} width="61px" height="24px">
+              <Button
+                leftIcon={<Icon as={Exit} />}
+                onClick={logout}
+                width="61px"
+                height="24px"
+                border="none"
+                background="transparent"
+              >
                 Sair
               </Button>
             </Flex>
