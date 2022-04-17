@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import PublicPage from "./routes/PublicPage";
 import Home from "./routes/Home";
 import RegisterRoute from "./routes/RegisterRoute";
+import Petweet from "./routes/Petweet";
 
 function App() {
   return (
@@ -19,6 +20,14 @@ function App() {
             element={
               <RequireAuth>
                 <Home />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/petweet"
+            element={
+              <RequireAuth>
+                <Petweet />
               </RequireAuth>
             }
           />
