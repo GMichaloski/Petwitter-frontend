@@ -23,7 +23,9 @@ export default function Petweet() {
       .max(140)
       .required("A mensagem não poder estar vazia!"),
   });
-  const { register, handleSubmit } = useForm({ resolver: yupResolver(schema) });
+  const { register, handleSubmit, resetField } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const handleCancelClick = () => {
     const from = location.state?.from?.pathname || "/home";
@@ -31,6 +33,7 @@ export default function Petweet() {
   };
 
   const onSubmit = (data) => {
+    resetField("content");
     console.log(data);
     try {
       postPetweet(data);

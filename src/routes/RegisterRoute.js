@@ -1,9 +1,18 @@
 import RegisterDesktop from "../components/Register/RegisterDesktop";
 import RegisterMobile from "../components/Register/RegisterMobile";
-import { useBreakpointValue } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 function Register() {
-  return <RegisterDesktop />;
+  return (
+    <Box>
+      <Box display={["none", "flex"]}>
+        <RegisterDesktop />
+      </Box>
+      <Box display={["flex", "none"]}>
+        <RegisterMobile />
+      </Box>
+    </Box>
+  );
 }
 
 export default Register;
