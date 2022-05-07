@@ -47,12 +47,13 @@ export default function Timeline() {
           height="75vh"
           endMessage={<Text> FIM DOS PETWEETS</Text>}
         >
+          {console.log(Posts.pages[0].data)}
           {Posts.pages[0].data.map((post_data) => (
             <Petweet
               key={post_data.id}
               userId={post_data.user_id}
               content={post_data.content}
-              createAt={post_data.createAt}
+              createAt={post_data.created_at}
             />
           ))}
         </InfiniteScroll>
