@@ -13,8 +13,11 @@ export default function PostBox() {
       .max(140)
       .required("A mensagem não poder estar vazia!"),
   });
-  const { register, handleSubmit } = useForm({ resolver: yupResolver(schema) });
+  const { register, handleSubmit, resetField } = useForm({
+    resolver: yupResolver(schema),
+  });
   const onSubmit = (data) => {
+    resetField("content");
     console.log(data);
     try {
       postPetweet(data);

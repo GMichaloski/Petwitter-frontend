@@ -3,12 +3,16 @@ import React from "react";
 import BarraLateralBranca from "../BarraLateralBranca";
 import LateralMenu from "../LateralMenu";
 import PostBox from "../PostBox";
+import Timeline from "../Timeline";
 
 export default function HomeDesktop() {
   return (
     <Flex flexDir="row">
       <LateralMenu home={true} />
-      <PostBox />
+      <Flex flexDir="column">
+        <PostBox />
+        <Timeline />
+      </Flex>
       <BarraLateralBranca />
     </Flex>
   );

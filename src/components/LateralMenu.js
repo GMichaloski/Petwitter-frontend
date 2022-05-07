@@ -4,6 +4,7 @@ import logo from "../assets/home_page/logo.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import Exit from "../icons/Exit";
 import { useAuth } from "../context/auth-context";
+import { getFromStorage } from "../services/auth";
 
 export default function LateralMenu(props) {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ export default function LateralMenu(props) {
     rgbPerfil = "rgb(0,172,193,0.1)";
   }
   const { signout } = useAuth();
+  const id = getFromStorage("user").id;
   const logout = () => {
     signout();
   };
@@ -25,7 +27,7 @@ export default function LateralMenu(props) {
     navigate(from, { replace: true });
   };
   const clickPerfil = () => {
-    const from = location.state?.from?.pathname || "/perfil";
+    const from = location.state?.from?.pathname || `/perfil/${id}`;
     navigate(from, { replace: true });
   };
 

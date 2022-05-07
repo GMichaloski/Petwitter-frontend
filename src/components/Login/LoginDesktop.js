@@ -37,7 +37,7 @@ export default function LoginDesktop() {
   return (
     <Flex>
       <Flex
-        flexDir="column"
+        flexDir={"column"}
         display="flex"
         justifyContent={"center"}
         minHeight="100vh"
