@@ -4,7 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useInfiniteQuery } from "react-query";
 import { getFeed } from "../services/petweets";
 import { useNavigate } from "react-router-dom";
-import { Spinner } from "@chakra-ui/react";
+import { Spinner, Text } from "@chakra-ui/react";
 import Petweet from "./Petweet";
 
 export default function Timeline() {
@@ -38,12 +38,14 @@ export default function Timeline() {
   );
 
   return (
-    <Flex>
+    <Flex flexDir="column">
       {!!Posts && (
         <InfiniteScroll
           dataLength={Posts.pages.length * 10}
           hasMore={hasNextPage}
           next={fetchNextPage}
+          height="75vh"
+          endMessage={<Text> FIM DOS PETWEETS</Text>}
         >
           {Posts.pages[0].data.map((post_data) => (
             <Petweet

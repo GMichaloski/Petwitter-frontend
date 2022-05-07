@@ -16,52 +16,73 @@ export default function Petweet({ userId, createAt, content }) {
     };
     fetchUserId();
   }, []);
-  console.log(user);
   const { name, username } = user;
   const formatter = buildFormatter(ptBrStrings);
 
   return (
-    <Flex flexDir="row">
-      <Image src={Niko} />
-      <Flex flexDir="column">
-        <Link to={`/profile/${userId}`}>
+    <Flex
+      flexDir="row"
+      boxShadow="0px 2px 0px rgba(33, 33, 33, 0.2)"
+      width="53.4vw"
+    >
+      <Flex marginLeft="20px" marginTop="16px">
+        <Image src={Niko} boxSize="40px" marginRight="16px" />
+        <Flex flexDir="column">
+          <Flex flexDir="row">
+            <Link to={`/profile/${userId}`}>
+              <Text
+                fontWeight="700"
+                fontSize="15px"
+                lineHeight="20.43px"
+                color="#000000"
+                wordBreak="break-word"
+                marginRight="4px"
+              >
+                {name}
+              </Text>
+            </Link>
+            <Text
+              fontWeight="400"
+              fontSize="15px"
+              lineHeight="20.43px"
+              color="#828282"
+              wordBreak="break-word"
+              marginRight="4px"
+            >
+              {`@${username}`}
+            </Text>
+            <Text
+              fontWeight="400"
+              fontSize="15px"
+              lineHeight="20.43px"
+              color="#828282"
+              wordBreak="break-word"
+              marginRight="4px"
+            >
+              •
+            </Text>
+            <Text
+              fontWeight="400"
+              fontSize="15px"
+              lineHeight="20.43px"
+              color="#828282"
+              wordBreak="break-word"
+              marginRight="4px"
+            >
+              <TimeAgo date={new Date(createAt)} formatter={formatter} />
+            </Text>
+          </Flex>
           <Text
-            fontWeight="bold"
-            fontSize="14px"
-            lineHeight="19px"
-            color="gray.600"
+            fontSize="15px"
+            fontWeight="400"
+            lineHeight="22px"
             wordBreak="break-word"
+            color="#333333"
+            marginBottom="11px"
           >
-            {name}
+            {content}
           </Text>
-        </Link>
-        <Text
-          fontWeight="300"
-          fontSize="12px"
-          lineHeight="17px"
-          color="gray.600"
-          wordBreak="break-word"
-        >
-          {`@${username}`}
-        </Text>
-        <Text
-          fontWeight="300"
-          fontSize="12px"
-          lineHeight="17px"
-          color="gray.600"
-          wordBreak="break-word"
-        >
-          •
-        </Text>
-        <Text
-          fontWeight="300"
-          fontSize="12px"
-          lineHeight="17px"
-          color="gray.600"
-          wordBreak="break-word"
-        >
-          <TimeAgo date={new Date(createAt)} formatter={formatter} />
-        </Text>
+        </Flex>
       </Flex>
     </Flex>
   );

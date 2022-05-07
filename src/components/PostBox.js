@@ -1,4 +1,4 @@
-import { Flex, Image, Input, Button } from "@chakra-ui/react";
+import { Flex, Image, Input, Button, Textarea } from "@chakra-ui/react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -28,30 +28,27 @@ export default function PostBox() {
 
   return (
     <Flex
-      height="202px"
+      height="25vh"
       width="54vw"
       as="form"
       onSubmit={handleSubmit(onSubmit)}
-      boxShadow="0px 2px 4px rgba(33, 33, 33, 0.2)"
+      boxShadow="0px 8px 0px rgb(229, 229, 229)"
     >
       <Flex flexDir="column">
-        <Flex flexDir="row">
+        <Flex flexDir="row" marginTop="20px">
           <Image
             src={genericDog}
             marginLeft="16px"
             marginRight="8px"
             boxSize="37px"
-            display="block"
-            alignSelf="center"
-          ></Image>
-          <Input
+            marginTop="13px"
+          />
+
+          <Textarea
             {...register("content")}
             marginTop="13px"
             border="none"
             width="50vw"
-            height="145px"
-            display="block"
-            alignSelf="center"
             fontSize="16px"
             placeholder="O que está acontecendo?"
           />
@@ -60,7 +57,6 @@ export default function PostBox() {
           width="90px"
           borderRadius="10"
           backgroundColor="#00ACC1"
-          display="block"
           alignSelf="end"
           opacity="40%"
           marginLeft="14px"

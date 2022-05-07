@@ -18,7 +18,5 @@ export const getUserPosts = async ({ user_id, page = 1 }) => {
 };
 export const getUserById = async (userId) => {
   const response = await client.get(`/users/${userId}`);
-  // console.log(response.data.user);
-  // console.log(name);
   return response.data.user;
 };
