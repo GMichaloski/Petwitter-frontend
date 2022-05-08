@@ -130,9 +130,10 @@ export default function LoginMobile() {
                   padding="13px"
                   variant="unstyled"
                   aria-label="Show password"
-                  border="none"
                   background="transparent"
-                  fontSize="20px"
+                  paddingTop="4px"
+                  marginRight="25px"
+                  fontSize="30px"
                   icon={<Icon as={show ? AiFillEyeInvisible : AiFillEye} />}
                   onClick={handleClick}
                 ></IconButton>

@@ -170,7 +170,9 @@ export default function RegisterMobile() {
                   aria-label="Show password"
                   border="none"
                   background="transparent"
-                  fontSize="20px"
+                  paddingTop="4px"
+                  marginRight="40px"
+                  fontSize="30px"
                   icon={<Icon as={show ? AiFillEyeInvisible : AiFillEye} />}
                   onClick={handleClick}
                 ></IconButton>

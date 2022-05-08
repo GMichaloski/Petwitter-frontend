@@ -51,7 +51,6 @@ export default function LoginDesktop() {
           <Icon as={LogoLC} />
         </Flex>
       </Flex>
-      {/* Forms  */}
       <Flex flexDir="column" marginLeft="72px" marginRight="72px">
         <Flex marginTop="52px" marginBottom="20px">
           <Icon as={PataButAzul}></Icon>
@@ -129,12 +128,14 @@ export default function LoginDesktop() {
               />
               <InputRightElement>
                 <IconButton
-                  padding="13px"
                   variant="unstyled"
                   aria-label="Show password"
+                  alignSelf="center"
                   border="none"
                   background="transparent"
-                  fontSize="20px"
+                  paddingTop="4px"
+                  paddingRight="15px"
+                  fontSize="30px"
                   icon={<Icon as={show ? AiFillEyeInvisible : AiFillEye} />}
                   onClick={handleClick}
                 ></IconButton>

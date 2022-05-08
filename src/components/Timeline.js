@@ -44,10 +44,9 @@ export default function Timeline() {
           dataLength={Posts.pages.length * 10}
           hasMore={hasNextPage}
           next={fetchNextPage}
-          height="75vh"
+          height="80vh"
           endMessage={<Text> FIM DOS PETWEETS</Text>}
         >
-          {console.log(Posts.pages[0].data)}
           {Posts.pages[0].data.map((post_data) => (
             <Petweet
               key={post_data.id}

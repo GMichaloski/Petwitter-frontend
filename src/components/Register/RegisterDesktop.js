@@ -56,7 +56,7 @@ export default function RegisterDesktop() {
         display="flex"
         justifyContent={"center"}
         minHeight="100vh"
-        width="45vw"
+        width="44vw"
         backgroundImage={MenuDoggo}
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
@@ -164,12 +164,14 @@ export default function RegisterDesktop() {
               />
               <InputRightElement>
                 <IconButton
-                  padding="13px"
+                  // padding="13px"
                   variant="unstyled"
                   aria-label="Show password"
                   border="none"
                   background="transparent"
-                  fontSize="20px"
+                  paddingTop="4px"
+                  marginRight="80px"
+                  fontSize="30px"
                   icon={<Icon as={show ? AiFillEyeInvisible : AiFillEye} />}
                   onClick={handleClick}
                 ></IconButton>
