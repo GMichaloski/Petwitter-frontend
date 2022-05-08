@@ -59,7 +59,7 @@ export default function Timeline() {
       )}
       {isFetching && (
         <Flex
-          width="100%"
+          width="100vw"
           height="6rem"
           alignItems="center"
           justifyContent="center"

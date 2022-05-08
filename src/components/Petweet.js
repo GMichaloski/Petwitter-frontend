@@ -20,11 +20,7 @@ export default function Petweet({ userId, createAt, content }) {
   const formatter = buildFormatter(ptBrStrings);
 
   return (
-    <Flex
-      flexDir="row"
-      boxShadow="0px 2px 0px rgba(33, 33, 33, 0.2)"
-      width="53.4vw"
-    >
+    <Flex flexDir="row" boxShadow="0px 2px 0px rgba(33, 33, 33, 0.2)">
       <Flex marginLeft="20px" marginTop="16px">
         <Image src={Niko} boxSize="40px" marginRight="16px" />
         <Flex flexDir="column">

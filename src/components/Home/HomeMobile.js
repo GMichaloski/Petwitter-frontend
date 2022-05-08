@@ -6,9 +6,9 @@ import Timeline from "../Timeline";
 
 export default function HomeMobile() {
   return (
-    <Flex flexDir="column">
-      <Header />
-      {/* <Timeline /> */}
+    <Flex flexDir="column" width="100vw">
+      <Header home={true} />
+      <Timeline />
       <PostButton />
     </Flex>
   );

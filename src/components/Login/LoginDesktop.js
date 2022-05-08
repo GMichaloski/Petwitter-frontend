@@ -134,7 +134,7 @@ export default function LoginDesktop() {
                   border="none"
                   background="transparent"
                   paddingTop="4px"
-                  paddingRight="15px"
+                  paddingRight="55px"
                   fontSize="30px"
                   icon={<Icon as={show ? AiFillEyeInvisible : AiFillEye} />}
                   onClick={handleClick}

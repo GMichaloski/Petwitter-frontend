@@ -24,18 +24,40 @@ import {
   Text,
   Link,
 } from "@chakra-ui/react";
+import genericBigger from "../assets/home_page/genericBigger.png";
+import { getFromStorage } from "../services/auth";
 import { useAuth } from "../context/auth-context";
 import { useRef } from "react";
 import Hamburguer from "../icons/Hamburguer";
 import Logo from "../icons/Logo";
 import Exit from "../icons/Exit";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function Header() {
+function Header(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
   const { signout } = useAuth();
   const logout = () => {
     signout();
+  };
+  const navigate = useNavigate();
+  const location = useLocation();
+  let rgbHome, rgbPerfil;
+  if (props.home) {
+    rgbHome = "rgb(0,172,193,0.1)";
+    rgbPerfil = "none";
+  } else {
+    rgbHome = "none";
+    rgbPerfil = "rgb(0,172,193,0.1)";
+  }
+  const id = getFromStorage("user").id;
+  const clickHome = () => {
+    const from = location.state?.from?.pathname || "/home";
+    navigate(from, { replace: true });
+  };
+  const clickPerfil = () => {
+    const from = location.state?.from?.pathname || `/perfil/${id}`;
+    navigate(from, { replace: true });
   };
   return (
     <Flex
@@ -63,13 +85,27 @@ function Header() {
         <DrawerContent>
           <DrawerBody>
             <Flex flexDir="column">
-              <Link>Home</Link>
-              <Link>Meu perfil</Link>
+              <Image
+                src={genericBigger}
+                boxSize="56px"
+                alignSelf="center"
+                marginTop="40px"
+                marginBottom="40px"
+              ></Image>
+              <Button border="none" bg={rgbHome} onClick={clickHome}>
+                Home
+              </Button>
+              <Button
+                border="none"
+                background={rgbPerfil}
+                onClick={clickPerfil}
+                marginBottom="20px"
+              >
+                Meu perfil
+              </Button>
               <Button
                 leftIcon={<Icon as={Exit} />}
                 onClick={logout}
-                width="61px"
-                height="24px"
                 border="none"
                 background="transparent"
               >
@@ -77,12 +113,6 @@ function Header() {
               </Button>
             </Flex>
           </DrawerBody>
-
-          <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-          </DrawerFooter>
         </DrawerContent>
       </Drawer>
       <Flex marginTop="10px" marginBottom="10px" marginLeft="19%">
