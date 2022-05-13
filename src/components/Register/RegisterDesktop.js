@@ -164,7 +164,6 @@ export default function RegisterDesktop() {
               />
               <InputRightElement>
                 <IconButton
-                  // padding="13px"
                   variant="unstyled"
                   aria-label="Show password"
                   border="none"

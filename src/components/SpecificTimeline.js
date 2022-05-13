@@ -1,28 +1,37 @@
 import React from "react";
 import { Flex } from "@chakra-ui/layout";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useInfiniteQuery } from "react-query";
-import { getFeed } from "../services/petweets";
-import { useNavigate } from "react-router-dom";
+import { useInfiniteQuery, useQuery } from "react-query";
+import { getUserPosts } from "../services/petweets";
+import { useNavigate, useParams } from "react-router-dom";
 import { Spinner, Text } from "@chakra-ui/react";
 import Petweet from "./Petweet";
+import { getFromStorage } from "../services/auth";
 
-export default function Timeline() {
+export default function SpecificTimeline() {
+  const { userId } = useParams();
   const navigate = useNavigate();
-  const {
-    data,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    status,
-  } = useInfiniteQuery("getFeed", getFeed, {
-    getNextPageParam: (lastPage, pages) => {
-      console.log(pages.length);
-      return lastPage.nextPage;
-    },
-  });
+  const { data, error, fetchNextPage, hasNextPage, isFetching } =
+    useInfiniteQuery(
+      ["userFeed", userId],
+      ({ pageParam }) =>
+        getUserPosts({
+          user_id: !userId ? getFromStorage("user")?.id : userId,
+          page: pageParam,
+        }),
+      {
+        getNextPageParam: (lastPage, pages) => {
+          return lastPage.nextPage;
+        },
+        onError: (error) => {
+          const { name, message, status } = error.toJSON();
+          if (status === 401) {
+            navigate("/login");
+          }
+        },
+      }
+    );
+
   return (
     <Flex flexDir="column">
       {!!data && (

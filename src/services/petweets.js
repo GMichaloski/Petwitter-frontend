@@ -9,12 +9,12 @@ export const postPetweet = async (data) => {
   }
 };
 export const getFeed = async ({ pageParam = 1 }) => {
-  return await client.get(`/petweet?page=${pageParam}&page_size=10`);
+  const results = await client.get(`/petweet?page=${pageParam}`);
+  return { results, nextPage: pageParam + 1 };
 };
 export const getUserPosts = async ({ user_id, page = 1 }) => {
-  return await client.get(
-    `/petweet?user_id=${user_id}&page=${page}&page_size=10`
-  );
+  const results = await client.get(`/petweet?id=${user_id}&page=${page}`);
+  return { results, nextPage: page + 1 };
 };
 export const getUserById = async (userId) => {
   const response = await client.get(`/users/${userId}`);

@@ -19,7 +19,6 @@ export default function PostBox() {
   });
   let handleInputChange = (e) => {
     let inputValue = e.target.value.length;
-    // console.log(inputValue.type);
     setSize(inputValue);
   };
 

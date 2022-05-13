@@ -8,7 +8,7 @@ import { getUserById } from "../services/petweets";
 
 export default function Petweet({ userId, createAt, content }) {
   const [user, setUser] = React.useState("");
-
+  
   React.useEffect(() => {
     const fetchUserId = async () => {
       const response = await getUserById(userId);

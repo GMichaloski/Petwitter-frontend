@@ -35,6 +35,14 @@ function App() {
               }
             />
             <Route
+              path="/perfil/:userId"
+              element={
+                <RequireAuth>
+                  <Perfil />
+                </RequireAuth>
+              }
+            />
+            <Route
               path="/petweet"
               element={
                 <RequireAuth>
