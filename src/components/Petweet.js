@@ -8,7 +8,7 @@ import { getUserById } from "../services/petweets";
 
 export default function Petweet({ userId, createAt, content }) {
   const [user, setUser] = React.useState("");
-  
+
   React.useEffect(() => {
     const fetchUserId = async () => {
       const response = await getUserById(userId);
@@ -25,7 +25,7 @@ export default function Petweet({ userId, createAt, content }) {
         <Image src={Niko} boxSize="40px" marginRight="16px" />
         <Flex flexDir="column">
           <Flex flexDir="row">
-            <Link to={`/profile/${userId}`}>
+            <Link href={`/perfil/${userId}`}>
               <Text
                 fontWeight="700"
                 fontSize="15px"
@@ -73,6 +73,7 @@ export default function Petweet({ userId, createAt, content }) {
             fontWeight="400"
             lineHeight="22px"
             wordBreak="break-word"
+            paddingRight="20px"
             color="#333333"
             marginBottom="11px"
           >

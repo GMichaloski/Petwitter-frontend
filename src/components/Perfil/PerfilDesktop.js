@@ -1,8 +1,8 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
 import BarraLateralBranca from "../BarraLateralBranca";
+import CardPerfilDesktop from "../CardPerfilDesktop";
 import LateralMenu from "../LateralMenu";
-import PostBox from "../PostBox";
 import SpecificTimeline from "../SpecificTimeline";
 
 export default function PerfilDesktop() {
@@ -10,7 +10,7 @@ export default function PerfilDesktop() {
     <Flex flexDir="row">
       <LateralMenu home={false} />
       <Flex flexDir="column">
-        <PostBox />
+        <CardPerfilDesktop />
         <SpecificTimeline />
       </Flex>
       <BarraLateralBranca />

@@ -19,7 +19,6 @@ export default function Timeline() {
     status,
   } = useInfiniteQuery("getFeed", getFeed, {
     getNextPageParam: (lastPage, pages) => {
-      console.log(pages.length);
       return lastPage.nextPage;
     },
   });

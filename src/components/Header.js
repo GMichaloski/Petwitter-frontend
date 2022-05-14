@@ -57,6 +57,7 @@ function Header(props) {
   };
   const clickPerfil = () => {
     const from = location.state?.from?.pathname || `/perfil/${id}`;
+    console.log(from);
     navigate(from, { replace: true });
   };
   return (

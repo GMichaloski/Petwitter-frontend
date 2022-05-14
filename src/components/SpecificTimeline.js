@@ -1,7 +1,7 @@
 import React from "react";
 import { Flex } from "@chakra-ui/layout";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useInfiniteQuery, useQuery } from "react-query";
+import { useInfiniteQuery } from "react-query";
 import { getUserPosts } from "../services/petweets";
 import { useNavigate, useParams } from "react-router-dom";
 import { Spinner, Text } from "@chakra-ui/react";
@@ -39,7 +39,7 @@ export default function SpecificTimeline() {
           dataLength={data.pages.length * 10}
           hasMore={hasNextPage}
           next={fetchNextPage}
-          height="80vh"
+          height="75vh"
           endMessage={<Text> FIM DOS PETWEETS</Text>}
         >
           {data.pages.map((post_data) => {
