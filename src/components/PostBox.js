@@ -23,6 +23,7 @@ export default function PostBox() {
   };
 
   const onSubmit = (data) => {
+    window.location.reload();
     resetField("content");
     console.log(data);
     try {

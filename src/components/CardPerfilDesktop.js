@@ -16,7 +16,7 @@ export default function CardPerfilDesktop() {
   }, []);
   const { name, username } = user;
   return (
-    <Flex flexDir="column">
+    <Flex flexDir="column" width="54vw">
       <Flex flexDir="row" marginTop="36px" marginBottom="40px">
         <Image src={bigBigNiko} marginLeft="30px" alignSelf="center" />
         <Flex

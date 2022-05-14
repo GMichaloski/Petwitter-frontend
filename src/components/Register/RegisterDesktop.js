@@ -34,7 +34,11 @@ export default function RegisterDesktop() {
     password: yup
       .string()
       .min(5, "Mínimo de 5 caracteres")
-      .required("Senha é obrigatória!"),
+      .required("Senha é obrigatória!")
+      .matches(
+        /^.*(?=.{5,})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+        "A senha deve conter, ao menos, 5 caracteres, uma maiścula, uma minúscula e um número"
+      ),
   });
   const { register, handleSubmit } = useForm({ resolver: yupResolver(schema) });
   const navigate = useNavigate();
