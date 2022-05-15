@@ -80,6 +80,7 @@ export default function RegisterMobile() {
           lineHeight="40px"
           color="#212121"
           marginTop="32px"
+          marginBottom="32px"
         >
           Cadastro
         </Text>
@@ -203,7 +204,7 @@ export default function RegisterMobile() {
           </FormControl>
         </Flex>
         <Text margin="0px">Já possui cadastro?</Text>
-        <Link href={`http://localhost:3000/login`} font="cyan.400">
+        <Link href={`/login`} color="#00ACC1" font="cyan.400">
           Faça login
         </Link>
       </Flex>

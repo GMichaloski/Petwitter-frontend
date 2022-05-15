@@ -74,12 +74,18 @@ export default function LoginMobile() {
           </Text>
         </Flex>
       </Flex>
-      <Flex flexDir="column" marginLeft="32px" marginRight="32px">
+      <Flex
+        flexDir="column"
+        marginTop="30px"
+        marginLeft="32px"
+        marginRight="32px"
+      >
         <Text
           fontStyle="normal"
           fontWeight="600"
           fontSize="24px"
           lineHeight="40px"
+          marginBottom="32px"
         >
           Login
         </Text>
@@ -155,7 +161,7 @@ export default function LoginMobile() {
           </FormControl>
         </Flex>
         <Text margin="0px">Ainda não possui uma conta?</Text>
-        <Link href={`http://localhost:3000/register`} font="cyan.400">
+        <Link href={`/register`} font="cyan.400" color="#00ACC1">
           Cadastrar-se
         </Link>
       </Flex>
