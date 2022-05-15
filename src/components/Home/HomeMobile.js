@@ -8,7 +8,7 @@ export default function HomeMobile() {
   return (
     <Flex flexDir="column" width="100vw">
       <Header home={true} />
-      <Timeline />
+      <Timeline petweetWidth="" />
       <PostButton />
     </Flex>
   );

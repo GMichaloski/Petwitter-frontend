@@ -6,7 +6,7 @@ import buildFormatter from "react-timeago/lib/formatters/buildFormatter";
 import ptBrStrings from "react-timeago/lib/language-strings/pt-br";
 import { getUserById } from "../services/petweets";
 
-export default function Petweet({ userId, createAt, content }) {
+export default function Petweet({ userId, createAt, content, petweetWidth }) {
   const [user, setUser] = React.useState("");
 
   React.useEffect(() => {
@@ -20,7 +20,11 @@ export default function Petweet({ userId, createAt, content }) {
   const formatter = buildFormatter(ptBrStrings);
 
   return (
-    <Flex flexDir="row" boxShadow="0px 2px 0px rgba(33, 33, 33, 0.2)">
+    <Flex
+      flexDir="row"
+      boxShadow="0px 2px 0px rgba(33, 33, 33, 0.2)"
+      width={petweetWidth}
+    >
       <Flex marginLeft="20px" marginTop="16px">
         <Image src={Niko} boxSize="40px" marginRight="16px" />
         <Flex flexDir="column">

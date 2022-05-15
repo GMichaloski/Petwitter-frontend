@@ -8,7 +8,8 @@ import { Spinner, Text } from "@chakra-ui/react";
 import Petweet from "./Petweet";
 import { getFromStorage } from "../services/auth";
 
-export default function SpecificTimeline() {
+export default function SpecificTimeline(props) {
+  const petweetWidth = props.petweetWidth;
   const { userId } = useParams();
   const navigate = useNavigate();
   const { data, error, fetchNextPage, hasNextPage, isFetching } =
@@ -49,26 +50,22 @@ export default function SpecificTimeline() {
                 userId={results.user_id}
                 content={results.content}
                 createAt={results.created_at}
+                petweetWidth={petweetWidth}
               />
             ));
           })}
+          {isFetching && (
+            <Flex height="6rem" alignItems="center" justifyContent="center">
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="cyan.400"
+                size="xl"
+              />
+            </Flex>
+          )}
         </InfiniteScroll>
-      )}
-      {isFetching && (
-        <Flex
-          width="100vw"
-          height="6rem"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Spinner
-            thickness="4px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="cyan.400"
-            size="xl"
-          />
-        </Flex>
       )}
     </Flex>
   );

@@ -3,19 +3,31 @@ import React from "react";
 import logo from "../assets/home_page/logo.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import Exit from "../icons/Exit";
+import Person from "../icons/Person";
+import BluePerson from "../icons/BluePerson";
+import Home from "../icons/Home";
+import BlueHome from "../icons/BlueHome";
 import { useAuth } from "../context/auth-context";
 import { getFromStorage } from "../services/auth";
 
 export default function LateralMenu(props) {
   const navigate = useNavigate();
   const location = useLocation();
-  let rgbHome, rgbPerfil;
+  let rgbHome, rgbPerfil, personIcon, homeIcon, homeColor, personColor;
   if (props.home) {
     rgbHome = "rgb(0,172,193,0.1)";
     rgbPerfil = "none";
+    homeIcon = BlueHome;
+    personIcon = Person;
+    homeColor = "#00ACC1";
+    personColor = "#424242";
   } else {
     rgbHome = "none";
     rgbPerfil = "rgb(0,172,193,0.1)";
+    homeIcon = Home;
+    personIcon = BluePerson;
+    homeColor = "#424242";
+    personColor = "#00ACC1";
   }
   const { signout } = useAuth();
   const id = getFromStorage("user").id;
@@ -46,17 +58,33 @@ export default function LateralMenu(props) {
         width="225px"
         height="54px"
       />
-      <Button border="none" bg={rgbHome} onClick={clickHome}>
+      <Button
+        border="none"
+        leftIcon={<Icon as={homeIcon} />}
+        bg={rgbHome}
+        onClick={clickHome}
+        color={homeColor}
+        paddingRight="45px"
+        iconSpacing="10px"
+      >
         Home
       </Button>
-      <Button border="none" background={rgbPerfil} onClick={clickPerfil}>
-        Meu perfil
+      <Button
+        border="none"
+        leftIcon={<Icon as={personIcon} />}
+        background={rgbPerfil}
+        onClick={clickPerfil}
+        color={personColor}
+        iconSpacing="10px"
+      >
+        Meu petfil
       </Button>
       <Button
         leftIcon={<Icon as={Exit} />}
         onClick={logout}
         border="none"
         background="transparent"
+        paddingRight="61px"
       >
         Sair
       </Button>

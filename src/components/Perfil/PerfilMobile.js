@@ -10,7 +10,7 @@ export default function PerfilMobile() {
     <Flex flexDir="column" width="100vw">
       <Header home={false} />
       <CardPerfil />
-      <SpecificTimeline />
+      <SpecificTimeline petweetWidth="" />
       <PostButton />
     </Flex>
   );

@@ -8,7 +8,6 @@ import { useParams } from "react-router-dom";
 export default function CardPerfil() {
   const [user, setUser] = React.useState("");
   const { userId } = useParams();
-
   React.useEffect(() => {
     const fetchUserId = async () => {
       const response = await getUserById(userId);

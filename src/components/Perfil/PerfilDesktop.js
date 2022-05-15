@@ -11,7 +11,7 @@ export default function PerfilDesktop() {
       <LateralMenu home={false} />
       <Flex flexDir="column">
         <CardPerfilDesktop />
-        <SpecificTimeline />
+        <SpecificTimeline petweetWidth="54vw" />
       </Flex>
       <BarraLateralBranca />
     </Flex>
