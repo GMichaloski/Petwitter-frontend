@@ -2,10 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import { AuthProvider, RequireAuth } from "./context/auth-context";
 import Login from "./routes/Login";
 import Layout from "./components/Layout";
-import PublicPage from "./routes/PublicPage";
 import Home from "./routes/Home";
 import RegisterRoute from "./routes/RegisterRoute";
-import Petweet from "./routes/Petweet";
 import Perfil from "./routes/Perfil";
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -39,14 +37,6 @@ function App() {
               element={
                 <RequireAuth>
                   <Perfil />
-                </RequireAuth>
-              }
-            />
-            <Route
-              path="/petweet"
-              element={
-                <RequireAuth>
-                  <Petweet />
                 </RequireAuth>
               }
             />

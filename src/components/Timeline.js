@@ -7,7 +7,7 @@ import { Spinner, Text } from "@chakra-ui/react";
 import Petweet from "./Petweet";
 
 export default function Timeline(props) {
-  const petweetWidth = props.petweetWidth;
+  const petweetHeight = props.petweetHeight;
   const { data, error, fetchNextPage, hasNextPage, isFetching, status } =
     useInfiniteQuery("getFeed", getFeed, {
       getNextPageParam: (lastPage, pages) => {
@@ -21,7 +21,7 @@ export default function Timeline(props) {
           dataLength={data.pages.length * 10}
           hasMore={hasNextPage}
           next={fetchNextPage}
-          height="80vh"
+          height={petweetHeight}
           endMessage={<Text> FIM DOS PETWEETS</Text>}
         >
           {data.pages.map((post_data) => {
@@ -31,7 +31,7 @@ export default function Timeline(props) {
                 userId={results.user_id}
                 content={results.content}
                 createAt={results.created_at}
-                petweetWidth={petweetWidth}
+                petweetWidth={["", "54vw"]}
               />
             ));
           })}

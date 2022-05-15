@@ -11,7 +11,7 @@ export default function HomeDesktop() {
       <LateralMenu home={true} />
       <Flex flexDir="column">
         <PostBox />
-        <Timeline petweetWidth="54vw" />
+        <Timeline petweetHeight="80vh" />
       </Flex>
       <BarraLateralBranca />
     </Flex>

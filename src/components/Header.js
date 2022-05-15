@@ -23,6 +23,13 @@ import {
   useDisclosure,
   Text,
   Link,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 import genericBigger from "../assets/home_page/genericBigger.png";
 import { getFromStorage } from "../services/auth";
@@ -38,7 +45,16 @@ import Home from "../icons/Home";
 import BlueHome from "../icons/BlueHome";
 
 function Header(props) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenSide,
+    onOpen: onOpenSide,
+    onClose: onCloseSide,
+  } = useDisclosure();
+  const {
+    isOpen: isOpenModal,
+    onOpen: onOpenModal,
+    onClose: onCloseModal,
+  } = useDisclosure();
   const btnRef = useRef();
   const { signout } = useAuth();
   const logout = () => {
@@ -71,6 +87,10 @@ function Header(props) {
     const from = location.state?.from?.pathname || `/perfil/${id}`;
     navigate(from, { replace: true });
   };
+  const exitClick = () => {
+    onOpenModal();
+    onCloseSide();
+  };
   return (
     <Flex
       height="48px"
@@ -85,12 +105,12 @@ function Header(props) {
         boxSize="50px"
         ref={btnRef}
         colorScheme="teal"
-        onClick={onOpen}
+        onClick={onOpenSide}
       ></IconButton>
       <Drawer
-        isOpen={isOpen}
+        isOpen={isOpenSide}
         placement="left"
-        onClose={onClose}
+        onClose={onCloseSide}
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
@@ -127,7 +147,7 @@ function Header(props) {
               </Button>
               <Button
                 leftIcon={<Icon as={Exit} />}
-                onClick={logout}
+                onClick={exitClick}
                 border="none"
                 background="transparent"
                 paddingRight="61px"
@@ -138,9 +158,57 @@ function Header(props) {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
+
       <Flex marginTop="10px" marginBottom="10px" marginLeft="19%">
         <Logo />
       </Flex>
+      <Modal isOpen={isOpenModal} onClose={onCloseModal}>
+        <ModalOverlay />
+        <ModalContent maxW={["95vw", "336px"]}>
+          <ModalHeader color="#616161" fontSize="24px">
+            Sair desta conta?
+          </ModalHeader>
+          <ModalBody color="#757575" fontSize="16px">
+            Deseja realmente sair desta conta?
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              fontSize="14px"
+              fontWeight="600"
+              lineHeight="24px"
+              color="#00ACC1"
+              mr={3}
+              onClick={logout}
+              variant="ghost"
+              width="82vw"
+              height="50px"
+              border="solid 2px"
+              borderRadius="12px"
+              borderColor="#00ACC1"
+            >
+              Sair
+            </Button>
+            <Button
+              fontSize="14px"
+              fontWeight="600"
+              lineHeight="24px"
+              colorScheme="#00ACC1"
+              mr={3}
+              onClick={onCloseModal}
+              variant="solid"
+              bgColor="#00ACC1"
+              width="82vw"
+              height="50px"
+              border="solid 2px"
+              borderRadius="12px"
+              borderColor="#00ACC1"
+            >
+              Cancelar
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Flex>
   );
 }

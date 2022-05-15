@@ -9,7 +9,6 @@ import Petweet from "./Petweet";
 import { getFromStorage } from "../services/auth";
 
 export default function SpecificTimeline(props) {
-  const petweetWidth = props.petweetWidth;
   const { userId } = useParams();
   const navigate = useNavigate();
   const { data, error, fetchNextPage, hasNextPage, isFetching } =
@@ -40,7 +39,7 @@ export default function SpecificTimeline(props) {
           dataLength={data.pages.length * 10}
           hasMore={hasNextPage}
           next={fetchNextPage}
-          height="75vh"
+          height={"76.5vh"}
           endMessage={<Text> FIM DOS PETWEETS</Text>}
         >
           {data.pages.map((post_data) => {
@@ -50,7 +49,7 @@ export default function SpecificTimeline(props) {
                 userId={results.user_id}
                 content={results.content}
                 createAt={results.created_at}
-                petweetWidth={petweetWidth}
+                petweetWidth={["", "54vw"]}
               />
             ));
           })}

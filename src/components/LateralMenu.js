@@ -1,4 +1,17 @@
-import { Button, Flex, Image, Icon } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Image,
+  Icon,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+} from "@chakra-ui/react";
 import React from "react";
 import logo from "../assets/home_page/logo.png";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -11,6 +24,7 @@ import { useAuth } from "../context/auth-context";
 import { getFromStorage } from "../services/auth";
 
 export default function LateralMenu(props) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
   const location = useLocation();
   let rgbHome, rgbPerfil, personIcon, homeIcon, homeColor, personColor;
@@ -81,13 +95,60 @@ export default function LateralMenu(props) {
       </Button>
       <Button
         leftIcon={<Icon as={Exit} />}
-        onClick={logout}
+        onClick={onOpen}
         border="none"
         background="transparent"
         paddingRight="61px"
       >
         Sair
       </Button>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader color="#616161" fontSize="24px">
+            Sair desta conta?
+          </ModalHeader>
+          <ModalBody color="#757575" fontSize="16px">
+            Deseja realmente sair desta conta?
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              fontSize="14px"
+              fontWeight="600"
+              lineHeight="24px"
+              color="#00ACC1"
+              mr={3}
+              onClick={logout}
+              variant="ghost"
+              width="82vw"
+              height="50px"
+              border="solid 2px"
+              borderRadius="12px"
+              borderColor="#00ACC1"
+            >
+              Sair
+            </Button>
+            <Button
+              fontSize="14px"
+              fontWeight="600"
+              lineHeight="24px"
+              colorScheme="#00ACC1"
+              mr={3}
+              onClick={onClose}
+              variant="solid"
+              bgColor="#00ACC1"
+              width="82vw"
+              height="50px"
+              border="solid 2px"
+              borderRadius="12px"
+              borderColor="#00ACC1"
+            >
+              Cancelar
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Flex>
   );
 }
