@@ -4,26 +4,14 @@ import {
   Button,
   IconButton,
   FormControl,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
   Icon,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-  Input,
   Drawer,
   DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton,
   useDisclosure,
   Text,
-  Link,
+  Textarea,
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -37,6 +25,8 @@ import React from "react";
 
 export default function PostButton() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [size, setSize] = React.useState("0");
+
   const btnRef = useRef();
   const navigate = useNavigate();
   const location = useLocation();
@@ -51,13 +41,16 @@ export default function PostButton() {
     resolver: yupResolver(schema),
   });
 
+  let handleInputChange = (e) => {
+    let inputValue = e.target.value.length;
+    setSize(inputValue);
+  };
   const onSubmit = (data) => {
     resetField("content");
     console.log(data);
     try {
       postPetweet(data);
-      const from = location.state?.from?.pathname || "/home";
-      navigate(from, { replace: true });
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -67,13 +60,14 @@ export default function PostButton() {
       <IconButton
         alignItems="flex-end"
         icon={<Icon as={PostButtonIcon} />}
+        background="none"
         onClick={onOpen}
         ref={btnRef}
       />
-      <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="full">
+      <Drawer isOpen={isOpen} onClose={onClose} size="full">
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerBody>
+          <DrawerBody padding="0">
             <FormControl>
               <Flex
                 as="form"
@@ -87,19 +81,24 @@ export default function PostButton() {
                   <Button
                     border="none"
                     background="transparent"
-                    marginRight="46vw"
+                    marginRight="30vw"
+                    fontWeight="thin"
+                    marginTop="6px"
+                    marginLeft="16px"
                     onClick={onClose}
                   >
                     Cancelar
                   </Button>
-                  <Text>0/140</Text>
+                  <Text marginTop="16px" color="#828282" fontSize="14px">
+                    {size}/140
+                  </Text>
                   <Button
                     width="90px"
-                    borderRadius="10"
+                    borderRadius="16"
                     backgroundColor="#00ACC1"
                     opacity="40%"
+                    marginTop="6px"
                     marginLeft="14px"
-                    padding="8px"
                     color="#FFFFFF"
                     fontWeight="700"
                     fontSize="12px"
@@ -110,20 +109,26 @@ export default function PostButton() {
                     Petwittar
                   </Button>
                 </Flex>
-                <Flex flexDir="row">
+                <Flex flexDir="row" marginTop="10px">
                   <Image
                     src={genericDog}
+                    marginTop="10px"
                     marginLeft="16px"
                     marginRight="8px"
                     boxSize="37px"
                   ></Image>
-                  <Input
+                  <Textarea
+                    variant="unstyled"
                     {...register("content")}
+                    onChange={handleInputChange}
                     marginTop="13px"
+                    marginBottom="25px"
                     border="none"
                     width="80vw"
+                    height="60vh"
                     fontSize="16px"
                     placeholder="O que está acontecendo?"
+                    maxLength="140"
                   />
                 </Flex>
               </Flex>
