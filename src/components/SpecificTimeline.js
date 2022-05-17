@@ -40,7 +40,6 @@ export default function SpecificTimeline(props) {
           hasMore={hasNextPage}
           next={fetchNextPage}
           height={"76.5vh"}
-          endMessage={<Text> FIM DOS PETWEETS</Text>}
         >
           {data.pages.map((post_data) => {
             return post_data.results.data.map((results) => (

@@ -12,9 +12,9 @@ import {
   useDisclosure,
   Text,
   Textarea,
+  useToast,
 } from "@chakra-ui/react";
 import { useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import genericDog from "../assets/genericDog.png";
@@ -28,8 +28,6 @@ export default function PostButton() {
   const [size, setSize] = React.useState("0");
 
   const btnRef = useRef();
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const schema = yup.object({
     content: yup
@@ -40,7 +38,7 @@ export default function PostButton() {
   const { register, handleSubmit, resetField } = useForm({
     resolver: yupResolver(schema),
   });
-
+  const toast = useToast();
   let handleInputChange = (e) => {
     let inputValue = e.target.value.length;
     setSize(inputValue);
@@ -50,7 +48,13 @@ export default function PostButton() {
     console.log(data);
     try {
       postPetweet(data);
-      window.location.reload();
+      toast({
+        title: "Petweet feito!",
+        description: "Recarregue para conferir!",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
     } catch (error) {
       console.log(error);
     }

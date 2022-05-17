@@ -160,8 +160,9 @@ export default function LoginDesktop() {
           <Text margin="0px">Ainda não possui uma conta?</Text>
           <Link
             marginLeft="5px"
-            href={`http://localhost:3000/register`}
+            href={`/register`}
             font="cyan.400"
+            color="#00ACC1"
           >
             Cadastrar-se
           </Link>

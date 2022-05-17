@@ -22,7 +22,6 @@ export default function Timeline(props) {
           hasMore={hasNextPage}
           next={fetchNextPage}
           height={petweetHeight}
-          endMessage={<Text> FIM DOS PETWEETS</Text>}
         >
           {data.pages.map((post_data) => {
             return post_data.results.data.map((results) => (

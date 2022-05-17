@@ -1,4 +1,12 @@
-import { Flex, Image, Text, Button, Textarea, Box } from "@chakra-ui/react";
+import {
+  Flex,
+  Image,
+  Text,
+  Button,
+  Textarea,
+  Box,
+  useToast,
+} from "@chakra-ui/react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -17,6 +25,7 @@ export default function PostBox() {
   const { register, handleSubmit, resetField } = useForm({
     resolver: yupResolver(schema),
   });
+  const toast = useToast();
   let handleInputChange = (e) => {
     let inputValue = e.target.value.length;
     setSize(inputValue);
@@ -27,7 +36,13 @@ export default function PostBox() {
     console.log(data);
     try {
       postPetweet(data);
-      window.location.reload();
+      toast({
+        title: "Petweet feito!",
+        description: "Recarregue para conferir!",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
     } catch (error) {
       console.log(error);
     }

@@ -208,8 +208,9 @@ export default function RegisterDesktop() {
           <Text margin="0px">Já possui cadastro?</Text>
           <Link
             marginLeft="5px"
-            href={`http://localhost:3000/login`}
+            href={`/register`}
             font="cyan.400"
+            color="#00ACC1"
           >
             Faça login
           </Link>
