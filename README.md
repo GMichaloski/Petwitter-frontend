@@ -4,6 +4,10 @@ Esse boilerplate deve ser utilizado para realizar o desafio final do curso WEB D
 
 O boilerplate também conta uma integração de autenticação com o [boilerplate de back-end da Otterwise](https://github.com/OtterwiseCo/boilerplate-back-end) via REST api pré setada.
 
+## Acesso
+
+O aplicativo em questão está hospedado em https://petwittter.vercel.app/login
+
 ## Tecnologias
 
 - [Create react app](https://create-react-app.dev/)
