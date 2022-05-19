@@ -29,6 +29,12 @@ export default function PostButton() {
 
   const btnRef = useRef();
 
+  let sendOpacity;
+  if (size === 0) {
+    sendOpacity = "40%";
+  } else {
+    sendOpacity = "100%";
+  }
   const schema = yup.object({
     content: yup
       .string()
@@ -100,7 +106,7 @@ export default function PostButton() {
                     width="90px"
                     borderRadius="16"
                     backgroundColor="#00ACC1"
-                    opacity="40%"
+                    opacity={sendOpacity}
                     marginTop="6px"
                     marginLeft="14px"
                     color="#FFFFFF"
