@@ -60,7 +60,7 @@ export default function PostButton() {
     }
   };
   return (
-    <Flex>
+    <Flex position="static">
       <IconButton
         alignItems="flex-end"
         icon={<Icon as={PostButtonIcon} />}

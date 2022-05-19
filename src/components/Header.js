@@ -93,7 +93,7 @@ function Header(props) {
   };
   return (
     <Flex
-      height="48px"
+      height="5vh"
       paddingLeft="16px"
       boxShadow="0px 2px 4px rgba(33, 33, 33, 0.2)"
     >
